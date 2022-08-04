@@ -1,4 +1,4 @@
-base_credit = read.csv('credit_data.csv')
+base_credit = read.csv('./data/credit_data.csv')
 
 # Observando os dados
 head(base_credit, 2)
