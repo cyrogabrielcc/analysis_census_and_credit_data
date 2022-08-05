@@ -1,3 +1,5 @@
+library(caTools)
+
 base_credit = read.csv('./data/credit_data.csv')
 
 # Observando os dados
@@ -29,3 +31,12 @@ base_credit[, 1:3] = scale(base_credit[, 1:3])
 
 # Escalonamento Feito
 head(base_credit, 5)
+
+# Separando a Classe
+div = sample.split(base_credit$default, SplitRatio = 0.75)
+
+# Atribuindo a base de treinamento
+trainning_base = subset(base_credit, div == T)
+test_base = subset(base_credit, div == F)
+# Separando
+

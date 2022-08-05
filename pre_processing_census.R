@@ -1,3 +1,5 @@
+library(caTools)
+
 # Selecionando csv
 census = read.csv("./data/census.csv")
 
@@ -22,4 +24,17 @@ census$native.country = factor(census$native.country, levels = c(' Cambodia', ' 
 census$income = factor(census$income, levels = c(' <=50K', ' >50K'), labels = c(0, 1))
 
 # Escalonamento 
+census[,1] = scale(census[,1])
+census[,3] = scale(census[,3])
+census[,5] = scale(census[,5])
+census[,11:13] = scale(census[,11:13])
+
+# Separando a Classe
+div = sample.split(census$income, SplitRatio = 0.75)
+
+# Atribuindo a base de treinamento
+trainning_base = subset(census, div == T)
+test_base = subset(census, div == F)
+
+# Separando
 
